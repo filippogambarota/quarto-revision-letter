@@ -10,6 +10,14 @@ $if(CJKmainfont)$
 \PassOptionsToPackage{space}{xeCJK}
 $endif$
 
+\usepackage{tcolorbox}
+\usepackage{framed}
+\usepackage{xcolor}
+\let\oldquote=\quote
+\let\endoldquote=\endquote
+\colorlet{shadecolor}{black!10}
+\renewenvironment{quote}{\begin{shaded*}\begin{oldquote}}{\end{oldquote}\end{shaded*}}
+
 \usepackage{amsmath,amssymb}
 $if(linestretch)$
 \usepackage{setspace}
@@ -488,6 +496,28 @@ $endif$
 \hrule
 \vspace{2em}
 
+\textbf{Legend:}
+
+\begin{minipage}[t]{0.33\textwidth}
+    \begin{tcolorbox}[colback=black!0,boxrule=0pt,sharp corners, colframe=white]
+        \textit{Reviewer Comment}
+    \end{tcolorbox}
+\end{minipage}
+\begin{minipage}[t]{0.33\textwidth}
+    \begin{tcolorbox}[colback=black!0,boxrule=0pt,sharp corners, colframe=white]
+        Authors Response
+    \end{tcolorbox}
+\end{minipage}
+\begin{minipage}[t]{0.33\textwidth}
+    \begin{tcolorbox}[colback=black!10,boxrule=0pt,sharp corners, colframe=white]
+        Changes
+    \end{tcolorbox}
+\end{minipage}
+
+\vspace{2em}
+\hrule
+\vspace{2em}
+
 $body$
 
 $if(natbib)$
@@ -526,3 +556,4 @@ $include-after$
 
 $endfor$
 \end{document}
+
