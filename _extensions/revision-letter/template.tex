@@ -10,6 +10,7 @@ $if(CJKmainfont)$
 \PassOptionsToPackage{space}{xeCJK}
 $endif$
 
+\usepackage{tikz}
 \usepackage{tcolorbox}
 \usepackage{framed}
 \usepackage{xcolor}
@@ -459,7 +460,7 @@ $endif$
 \renewcommand{\therevcomcounter}{\arabic{section}.\arabic{revcomcounter}}
 
 % Review comment environment
-\newenvironment{revcom}[1][]{%
+\newenvironment{rcomment}[1][]{%
     \refstepcounter{revcomcounter}%
     \ifx\\#1\\%
     \else
@@ -469,14 +470,15 @@ $endif$
         }%
         {\end{trivlist}}%
 
-% Environment for responding to review comments
-\newenvironment{response}[1][]{%
-    \begin{trivlist}\item\textbf{Response: }%
-        }%
-        {\end{trivlist}}%
-
 % Reset comment counter in each section
 \counterwithin*{revcomcounter}{section}
+
+\newtcolorbox{response}[1][]
+{
+colback=white,
+arc=0pt,
+boxrule=0.5pt
+}
 
 %%%%
 
@@ -504,9 +506,12 @@ $endif$
     \end{tcolorbox}
 \end{minipage}
 \begin{minipage}[t]{0.33\textwidth}
-    \begin{tcolorbox}[colback=black!0,boxrule=0pt,sharp corners, colframe=white]
-        Authors Response
-    \end{tcolorbox}
+    % \begin{tcolorbox}[colback=black!0,boxrule=0pt,sharp corners, colframe=white]
+    %     Authors Response
+    % \end{tcolorbox}
+    \begin{response}
+      Authors Response
+    \end{response}
 \end{minipage}
 \begin{minipage}[t]{0.33\textwidth}
     \begin{tcolorbox}[colback=black!10,boxrule=0pt,sharp corners, colframe=white]
